@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>cod game</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    
+
+    <div class="container">
+        <button type="button" class="startBtn" > start game</button>
+
+        <img src="crosshair.png" alt="Crosshair" class="cursor"/>
+        <img src="bloodspot.png" alt="Bloodspot" class="bloodspot"/>
+    </div>
+
+<script>
+    const container = document.querySelector(".container");
+    const bloodspot = document.querySelector(".bloodspot");
+    const startBtn = document.querySelector(".startBtn");
+
+    const zombie = document.createElement("img");
+    zombie.setAttribute("class", "zombie");
+    zombie.setAttribute("src", "./codzombie1.png");
+
+    const contHeight = container.offsetHeight;
+    const contWidth = container.offsetHeight;
+
+    setInterval(() => {
+        const randTop = Math.random() * (contHeight - 100);
+        const randLeft = Math.random() * (contWidth - 100);
+        console.log(123);
+        zombie.style.position = "absolute";
+        zombie.style.top = randTop + "px";
+        zombie.style.left = randLeft + "px";
+        
+    },  2000);
+
+    let score = 0;
+
+    startBtn.addEventListener("click", () => {
+        container.appendChild(zombie);
+
+        startBtn.innerText = "SCORE: " + score;
+    });
+
+    window.addEventListener("click", (e) => {
+        bloodspot.style.top = e.pageY + "px";
+        bloodspot.style.left = e.pageX + "px";
+
+        if (e.target === zombie) score++;
+        startBtn.innerText = "SCORE: " + score;
+
+
+    });
+
+    const cursor = document.querySelector(".cursor");
+    window.addEventListener("mousemove", (e) => {
+        cursor.style.top = e.pageY + "px";
+        cursor.style.left = e.pageX + "px";
+    });
+
+
+</script>
+</body>
+</html>
